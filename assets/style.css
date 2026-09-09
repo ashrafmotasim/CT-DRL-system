@@ -1,0 +1,435 @@
+/* =========================================================================
+   CT DRL System - Medical UI Stylesheet
+   Uses CSS custom properties (variables) so app.py can switch between
+   Light Mode and Dark Mode by re-declaring the :root block at runtime.
+   ========================================================================= */
+
+:root {
+  --bg-color: #F5F7FA;
+  --card-bg: #FFFFFF;
+  --text-color: #1A1A2E;
+  --text-muted: #5A5A6E;
+  --primary: #1565C0;
+  --primary-soft: rgba(21, 101, 192, 0.10);
+  --secondary: #2E7D32;
+  --secondary-soft: rgba(46, 125, 50, 0.12);
+  --warning: #F57C00;
+  --warning-soft: rgba(245, 124, 0, 0.12);
+  --danger: #D32F2F;
+  --danger-soft: rgba(211, 47, 47, 0.12);
+  --border-color: #E1E5EA;
+  --shadow: 0 2px 10px rgba(20, 30, 50, 0.07);
+}
+
+html, body, [class*="css"] {
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif !important;
+}
+
+.stApp {
+  background-color: var(--bg-color);
+}
+
+/* ---------- Typography ---------- */
+.main-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 22px;
+}
+
+.section-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 22px 0 14px 0;
+  border-left: 5px solid var(--primary);
+  padding-left: 12px;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.body-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+/* ---------- Cards ---------- */
+.med-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 22px 24px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow);
+  color: var(--text-color);
+}
+
+.med-card h3 { font-size: 20px; font-weight: 700; color: var(--primary); margin-top: 0; }
+.med-card p, .med-card li { font-size: 16px; color: var(--text-color); line-height: 1.6; }
+.med-card ul { margin-bottom: 0; }
+
+.feature-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-top: 4px solid var(--primary);
+  border-radius: 16px;
+  padding: 20px;
+  height: 100%;
+  box-shadow: var(--shadow);
+}
+.feature-card h4 { font-size: 19px; font-weight: 700; color: var(--text-color); margin: 6px 0; }
+.feature-card p { font-size: 15px; color: var(--text-muted); line-height: 1.55; }
+
+/* ---------- KPI tiles ---------- */
+.kpi-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  padding: 18px 14px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  height: 100%;
+}
+.kpi-value { font-size: 30px; font-weight: 800; color: var(--primary); }
+.kpi-value.danger { color: var(--danger); }
+.kpi-value.success { color: var(--secondary); }
+.kpi-value.warning { color: var(--warning); }
+.kpi-label {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-top: 4px;
+}
+
+/* ---------- Status badges ---------- */
+.status-badge {
+  display: inline-block;
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 700;
+}
+.status-approved { background: var(--secondary-soft); color: var(--secondary); }
+.status-rejected { background: var(--danger-soft); color: var(--danger); }
+.status-warning  { background: var(--warning-soft); color: var(--warning); }
+
+/* ---------- Sidebar ---------- */
+section[data-testid="stSidebar"] {
+  background-color: var(--card-bg);
+  border-right: 1px solid var(--border-color);
+}
+section[data-testid="stSidebar"] .stRadio label {
+  font-size: 16px !important;
+}
+
+/* ---------- Tables / dataframes ---------- */
+.stDataFrame, .stTable, div[data-testid="stTable"] {
+  font-size: 16px;
+}
+
+/* ---------- Buttons ---------- */
+.stButton>button, .stDownloadButton>button {
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 8px 20px;
+  border: 1px solid var(--primary);
+}
+
+/* ---------- Tabs ---------- */
+button[data-baseweb="tab"] {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+
+/* ---------- Expanders ---------- */
+details {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+summary {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: var(--text-color) !important;
+}
+
+/* ---------- Metric widgets ---------- */
+div[data-testid="stMetric"] {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+}
+div[data-testid="stMetricValue"] { color: var(--primary); font-size: 26px; }
+div[data-testid="stMetricLabel"] { color: var(--text-muted); font-size: 14px; font-weight: 700; }
+
+/* ---------- Alerts (validation messages) ---------- */
+div[data-testid="stAlert"] { border-radius: 12px; font-size: 15px; }
+
+/* ---------- Hero banner ---------- */
+.hero-banner {
+  background: linear-gradient(135deg, var(--primary) 0%, #0D3F73 100%);
+  border-radius: 18px;
+  padding: 34px 32px;
+  margin-bottom: 22px;
+  color: #FFFFFF;
+  box-shadow: var(--shadow);
+}
+.hero-banner .main-title { color: #FFFFFF; }
+.hero-banner .subtitle { color: #E3EEFB; }
+
+/* ---------- Footer ---------- */
+.app-footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  padding: 18px 0 6px 0;
+}
+
+/* =========================================================================
+   Forced theme overrides for Streamlit's NATIVE components.
+   Streamlit's own widgets (buttons, radio, file uploader, tables, tabs,
+   alerts, popovers) do not automatically follow the CSS variables above -
+   they render with Streamlit's own theme colors regardless of our custom
+   dark-mode toggle. Everything below forces every native component to
+   follow --bg-color / --card-bg / --text-color / --border-color so dark
+   mode never produces black-on-dark or invisible content.
+   ========================================================================= */
+
+.stApp, .main, section.main, div[data-testid="stAppViewContainer"],
+div[data-testid="stMain"], .block-container {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+}
+
+header[data-testid="stHeader"] {
+  background-color: var(--bg-color) !important;
+}
+
+/* Generic text: captions only. NOTE: we deliberately do NOT force color on
+   every <p>/<li>/<span>/<div> inside markdown - that used to blanket-override
+   our own colored components (.kpi-value, .status-badge, etc.), turning
+   everything the same washed-out gray. Our own card/text classes already
+   set color: var(--text-color) themselves and adapt correctly; this rule
+   only needs to catch genuinely native, unclassed Streamlit text. */
+div[data-testid="stCaptionContainer"] {
+  color: var(--text-muted) !important;
+}
+div[data-testid="stMarkdownContainer"] > p {
+  color: var(--text-color);
+}
+
+/* Radio / toggle / checkbox / selectbox labels and options */
+div[data-testid="stRadio"] label,
+div[data-testid="stRadio"] div,
+div[data-testid="stCheckbox"] label,
+div[data-testid="stSelectbox"] label,
+div[data-baseweb="radio"] label,
+div[data-baseweb="select"] * {
+  color: var(--text-color) !important;
+}
+div[data-baseweb="select"] > div {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+div[data-baseweb="popover"] {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+}
+div[data-baseweb="popover"] li {
+  color: var(--text-color) !important;
+}
+
+/* Buttons / download buttons */
+.stButton > button, .stDownloadButton > button {
+  background-color: var(--card-bg) !important;
+  color: var(--primary) !important;
+  border: 1px solid var(--primary) !important;
+}
+.stButton > button:hover, .stDownloadButton > button:hover {
+  background-color: var(--primary-soft) !important;
+  color: var(--primary) !important;
+}
+.stButton > button p, .stDownloadButton > button p {
+  color: inherit !important;
+}
+
+/* File uploader */
+div[data-testid="stFileUploaderDropzone"] {
+  background-color: var(--card-bg) !important;
+  border: 1.5px dashed var(--border-color) !important;
+}
+div[data-testid="stFileUploaderDropzone"] * {
+  color: var(--text-color) !important;
+}
+div[data-testid="stFileUploaderDropzone"] button {
+  background-color: var(--bg-color) !important;
+  color: var(--primary) !important;
+  border: 1px solid var(--primary) !important;
+}
+
+/* Static tables (st.table) - fully CSS-themeable, used for critical
+   read-only data so dark mode never has an invisible/canvas-rendered table */
+table {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border-color: var(--border-color) !important;
+}
+table th {
+  background-color: var(--primary) !important;
+  color: #FFFFFF !important;
+}
+table td {
+  color: var(--text-color) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Interactive dataframes (st.dataframe) - Streamlit renders these on a
+   canvas, so only the surrounding chrome (not cell text) is CSS-themeable */
+div[data-testid="stDataFrame"] {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px;
+}
+
+/* Tabs */
+div[data-baseweb="tab-list"] {
+  background-color: var(--bg-color) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+button[data-baseweb="tab"] {
+  color: var(--text-muted) !important;
+  background-color: transparent !important;
+}
+button[data-baseweb="tab"] p {
+  color: inherit !important;
+}
+button[data-baseweb="tab"][aria-selected="true"] {
+  color: var(--primary) !important;
+}
+
+/* Expanders */
+div[data-testid="stExpander"] {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 12px;
+}
+div[data-testid="stExpander"] summary {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+}
+div[data-testid="stExpander"] summary p,
+div[data-testid="stExpander"] summary span {
+  color: var(--text-color) !important;
+}
+div[data-testid="stExpander"] svg {
+  fill: var(--text-color) !important;
+}
+
+/* Alerts (success / warning / error / info) keep readable text on their
+   own tinted backgrounds in both themes */
+div[data-testid="stAlert"] p {
+  color: var(--text-color) !important;
+}
+
+/* Text inputs (e.g. delete-history password field) */
+div[data-testid="stTextInput"] input {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+div[data-testid="stTextInput"] label p {
+  color: var(--text-color) !important;
+}
+
+/* st.container(border=True) - used for the Upload page cards and each
+   Analysis History entry. Styled to match our .med-card look so grouped
+   content renders as an actual bordered card instead of stray HTML. */
+div[data-testid="stVerticalBlockBorderWrapper"] {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--shadow);
+}
+
+/* Popover (Delete button) */
+div[data-testid="stPopoverBody"] {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Toggle (Dark Mode switch) track/label */
+div[data-testid="stToggle"] label p {
+  color: var(--text-color) !important;
+}
+
+/* Toast */
+div[data-testid="stToast"] {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+}
+
+/* =========================================================================
+   ADDED: Project Team cards (About page).
+   The small icon that used to sit in the top-left corner of each card is
+   replaced by a circular initials avatar, matching the requested reference
+   design. Names, roles and card contents are unchanged.
+   ========================================================================= */
+.person-card {
+  text-align: center;
+  padding-top: 22px;
+}
+.person-card h4 {
+  margin: 4px 0 4px 0;
+}
+.person-card p {
+  margin: 0;
+}
+.avatar-initials {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  margin: 0 auto 14px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  line-height: 1;
+  box-shadow: 0 3px 10px rgba(20, 30, 50, 0.20);
+}
+
+/* Modal dialog (International DRL country picker) */
+div[data-testid="stDialog"] div[role="dialog"] {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 16px !important;
+}
+div[data-testid="stDialog"] div[role="dialog"] h2,
+div[data-testid="stDialog"] div[role="dialog"] p,
+div[data-testid="stDialog"] div[role="dialog"] label {
+  color: var(--text-color) !important;
+}
