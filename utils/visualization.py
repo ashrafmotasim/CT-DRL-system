@@ -297,7 +297,7 @@ def fig_outliers(df: pd.DataFrame, column: str, dark_mode: bool = False):
     fig = px.strip(df_flagged, x='Region', y=column, color='Status',
                     color_discrete_map={'Outlier': COLOR_DANGER, 'Normal': COLOR_PRIMARY})
     fig.update_traces(marker=dict(size=9, opacity=0.8))
-    return _layout(fig, dark_mode, f"Outlier Detection (1.5×IQR, supplementary) — {column}", "Region", column)
+    return _layout(fig, dark_mode, f"Outlier Detection — {column}", "Region", column)
 
 
 def fig_pie_region_share(df: pd.DataFrame, dark_mode: bool = False):
