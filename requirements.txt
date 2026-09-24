@@ -6,4 +6,3 @@ openpyxl
 xlsxwriter
 reportlab
 pillow
-kaleido

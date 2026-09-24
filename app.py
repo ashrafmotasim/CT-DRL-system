@@ -584,32 +584,17 @@ def render_upload():
                 st.session_state.kpis = kpis
                 st.session_state.analysis_signature = analysis_sig
 
-            st.success("Automatic DRL analysis complete. View results on the 'Analysis Results' page.")
-
-            # --- Saving to history is an explicit user action only ---
-            st.markdown('<div class="section-title">Save to Analysis History</div>', unsafe_allow_html=True)
-            st.markdown(
-                "<p class='body-text'>Uploaded datasets are <b>not</b> saved automatically. "
-                "Click the button below when you want this analysis stored in Analysis History.</p>",
-                unsafe_allow_html=True,
-            )
-            sc1, sc2 = st.columns([1, 2])
-            with sc1:
-                save_clicked = st.button("Save Analysis to History", key="save_history_btn",
-                                          use_container_width=True)
-            if save_clicked:
-                df_analyzed = st.session_state.df_analyzed
+                # --- Automatically save the completed analysis to Analysis History ---
                 region_stats = {
                     col: region_statistics(df_analyzed, col)
                     for col in ["CTDIvol", "DLP", "EffectiveDose_mSv"]
                 }
-                excel_bytes = build_analysis_excel(
-                    df_analyzed, st.session_state.results, st.session_state.kpis, region_stats
-                )
+                excel_bytes = build_analysis_excel(df_analyzed, results, kpis, region_stats)
                 fname = history_filename()
                 save_to_history(excel_bytes, fname)
                 st.session_state.last_history_filename = fname
-                st.success(f"Analysis saved to Analysis History as {fname}")
+
+            st.success("Automatic DRL analysis complete. View results on the 'Analysis Results' page.")
 
 
 # ---------------------------------------------------------------------------
@@ -802,10 +787,6 @@ def render_results():
 
     # --- Tab 4: Outlier Detection ---
     with tabs[3]:
-        st.markdown(
-            "<p class='body-text'>Supplementary outlier detection using the standard 1.5&times;IQR rule, "
-            "applied per region. <b>This method is not part of the original notebook</b> and is provided as "
-            "an additional statistical quality-control tool.</p>", unsafe_allow_html=True)
         outlier_metric = st.selectbox("Select metric for outlier detection", ["CTDIvol", "DLP"], key="outlier_metric")
         osum = outlier_summary(df, outlier_metric)
 
@@ -979,8 +960,7 @@ def main():
         render_about()
 
     st.markdown(
-        '<div class="app-footer">CT DRL Evaluation System &mdash; Biomedical Engineering Graduation Project '
-        '&mdash; Cairo, Egypt</div>',
+        '<div class="app-footer">Evaluation of CT Radiation Doses Against Diagnostic Reference Levels (DRLs)</div>',
         unsafe_allow_html=True,
     )
 
